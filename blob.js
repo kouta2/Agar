@@ -27,11 +27,16 @@ function Blob(x, y, r, sketch)
 	this.consumes = function(sketch, blob)
 	{
 		var dist_between_blobs = sketch.dist(this.location.x, this.location.y, blob.location.x, blob.location.y);
-		if(dist_between_blobs < this.r + blob.r)
+		if(dist_between_blobs < this.r + blob.r && this.r > blob.r)
 		{
 			this.r = sketch.sqrt(this.r * this.r + blob.r * blob.r);
 			return true;
 		}
 		return false;
+	}
+
+	this.split = function(sketch)
+	{
+		
 	}
 }

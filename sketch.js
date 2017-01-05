@@ -1,10 +1,11 @@
 var blobs = [];
 var my_blob;
 var num_initial_blobs = 100;
-var random_blob_size = 8;
+var baby_blob_size = 8;
 var glob_sketch;
 var zoom;
 var init_radius = 64;
+var num_new_blobs = 20;
 
 var p5_agar = function(sketch)
 {
@@ -19,7 +20,7 @@ var p5_agar = function(sketch)
 
 		for(var i = 0; i < num_initial_blobs; i++)
 		{
-			blobs.push(new Blob(sketch.random(sketch.width), sketch.random(sketch.height), random_blob_size, sketch));
+			blobs.push(new Blob(sketch.random(sketch.width), sketch.random(sketch.height), baby_blob_size, sketch));
 		}
 	};
 
@@ -33,6 +34,13 @@ var p5_agar = function(sketch)
 		sketch.scale(zoom);
 		sketch.translate(-my_blob.location.x, -my_blob.location.y);
 
+		if(sketch.frameCount % 50 == 0)
+		{
+			for(var i = 0; i < num_new_blobs; i++)
+			{
+				blobs.push(new Blob(sketch.random(my_blob.location.x - sketch.width, my_blob.location.x + sketch.width), sketch.random(my_blob.location.y - sketch.height, my_blob.location.y + sketch.height), baby_blob_size, sketch));
+			}
+		}
 
 		for(var i = 0; i < blobs.length; i++)
 		{
