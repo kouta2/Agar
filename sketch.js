@@ -7,10 +7,14 @@ var zoom;
 var init_radius = 64;
 var num_new_blobs = 20;
 
+var socket;
+
 var p5_agar = function(sketch)
 {
 	sketch.setup = function()
 	{
+		socket = io.connect('http://localhost:3000')
+
 		glob_sketch = sketch;
 		var canvas = sketch.createCanvas(700, 550);
 		canvas.parent('agar');
@@ -18,10 +22,14 @@ var p5_agar = function(sketch)
 		sketch.translate(sketch.width / 2, sketch.height / 2);
 		my_blob = new Blob(sketch.width / 2, sketch.height / 2, init_radius, sketch);
 
+/*
 		for(var i = 0; i < num_initial_blobs; i++)
 		{
 			blobs.push(new Blob(sketch.random(sketch.width), sketch.random(sketch.height), baby_blob_size, sketch));
 		}
+*/
+
+		socket.emit('start');
 	};
 
 	sketch.draw = function()
@@ -53,6 +61,7 @@ var p5_agar = function(sketch)
 
 		my_blob.show(sketch);
 		my_blob.update(sketch);
+		my_blob.constrain(sketch);
 	};
 };
 

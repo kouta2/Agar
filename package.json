@@ -1,0 +1,24 @@
+{
+  "name": "agario_socket",
+  "version": "1.0.0",
+  "description": "server side for agario",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kouta2/Agar.git"
+  },
+  "author": "Arvind Kouta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kouta2/Agar/issues"
+  },
+  "homepage": "https://github.com/kouta2/Agar#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "socket.io": "^1.7.2"
+  }
+}

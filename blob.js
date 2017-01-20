@@ -35,6 +35,12 @@ function Blob(x, y, r, sketch)
 		return false;
 	}
 
+	this.constrain = function(sketch)
+	{
+		blob.pos.x = sketch.constrain(blob.pos.x, -sketch.width, sketch.width);
+		blob.pos.y = sketch.constrain(blob.pos.y, -sketch.height, sketch.height);
+	}
+
 	this.split = function(sketch)
 	{
 		
