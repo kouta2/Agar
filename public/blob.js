@@ -2,8 +2,6 @@
 
 function Blob(x, y, r, sketch)
 {
-	// this.x = x
-	// this.y = y
 	this.location = sketch.createVector(x, y);
 	this.r = r;
 	this.v = sketch.createVector(0, 0);
@@ -33,6 +31,12 @@ function Blob(x, y, r, sketch)
 			return true;
 		}
 		return false;
+	}
+
+	this.constrain = function(sketch)
+	{
+		location.x = sketch.constrain(location.x, -sketch.width, sketch.width);
+		location.y = sketch.constrain(location.y, -sketch.height, sketch.height);
 	}
 
 	this.split = function(sketch)
