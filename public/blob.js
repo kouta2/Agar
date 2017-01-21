@@ -24,7 +24,7 @@ function Blob(x, y, r, sketch)
 
 	this.consumes = function(sketch, blob)
 	{
-		var dist_between_blobs = sketch.dist(this.location.x, this.location.y, blob.location.x, blob.location.y);
+		var dist_between_blobs = sketch.dist(this.location.x, this.location.y, blob.x, blob.y);
 		if(dist_between_blobs < this.r + blob.r && this.r > blob.r)
 		{
 			this.r = sketch.sqrt(this.r * this.r + blob.r * blob.r);
@@ -35,8 +35,8 @@ function Blob(x, y, r, sketch)
 
 	this.constrain = function(sketch)
 	{
-		location.x = sketch.constrain(location.x, -sketch.width, sketch.width);
-		location.y = sketch.constrain(location.y, -sketch.height, sketch.height);
+		this.location.x = sketch.constrain(this.location.x, -600, 600); // -sketch.width, sketch.width);
+		this.location.y = sketch.constrain(this.location.y, -600, 600); // -sketch.height, sketch.height);
 	}
 
 	this.split = function(sketch)
